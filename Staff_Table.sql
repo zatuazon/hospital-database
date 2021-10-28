@@ -1,0 +1,21 @@
+SELECT * FROM hospital.staff_table;
+    
+UPDATE STAFF_TABLE
+SET Block_Number = 100;
+
+UPDATE STAFF_TABLE
+SET Block_Number = 200;
+
+UPDATE STAFF_TABLE
+SET Block_Number = 300;
+
+UPDATE STAFF_TABLE
+SET Block_Number = 400;
+
+UPDATE STAFF_TABLE
+SET Block_Number = 500;
+
+UPDATE STAFF_TABLE
+SET Block_Number = 600;
+
+DELETE FROM STAFF_TABLE;

@@ -1,0 +1,24 @@
+SELECT * FROM hospital.bill_table;
+
+INSERT INTO BILL_TABLE (Patient_ID) 
+SELECT Patient_ID
+FROM Patient_Table P
+WHERE P.Patient_ID > 1;
+
+
+UPDATE BILL_TABLE
+SET ADMISSION = CURRENT_TIMESTAMP;
+
+UPDATE BILL_TABLE
+SET Discharge = CURRENT_TIMESTAMP;
+
+UPDATE BILL_TABLE
+SET Hospital_Stays = datediff(Discharge, Admission);
+
+UPDATE BILL_TABLE
+SET Treatment_Cost = 1000;
+
+UPDATE BILL_TABLE
+SET BILL_AMOUNT = Treatment_cost + (Hospital_stays*50);
+
+DELETE FROM BILL_TABLE;

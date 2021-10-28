@@ -1,0 +1,77 @@
+USE Hospital;
+
+CREATE TABLE Patient(
+PatientID INT AUTO_INCREMENT,
+LastName VARCHAR(20),
+FirstName VARCHAR(20),
+Sex VARCHAR(1),
+State VARCHAR(2),
+City VARCHAR(30),
+StreetAddress VARCHAR(100),
+Zip VARCHAR(30),
+PhoneNumber VARCHAR(20),
+EmergencyContact VARCHAR(20),
+Ailment VARCHAR(40),
+Treatment VARCHAR(40),
+DoctorID INT,
+RoomNumber INT,
+Admission DATE,
+PRIMARY KEY (PatientID)
+);
+
+CREATE TABLE Doctor(
+DoctorID INT AUTO_INCREMENT,
+LastName VARCHAR(20),
+FirstName VARCHAR(20),
+PRIMARY KEY (DoctorID)
+);
+
+CREATE TABLE Nurse(
+NurseID INT AUTO_INCREMENT,
+LastName VARCHAR(20),
+FirstName VARCHAR(20),
+PRIMARY KEY (NurseID)
+);
+
+CREATE TABLE Ward(
+WardID INT AUTO_INCREMENT,
+LastName VARCHAR(20),
+FirstName VARCHAR(20),
+Job VARCHAR(40),
+PRIMARY KEY (WardID)
+);
+
+CREATE TABLE Room(
+RoomNumber INT AUTO_INCREMENT,
+RoomNote VARCHAR(40),
+NurseID INT,
+PRIMARY KEY (RoomNumber),
+FOREIGN KEY (NurseID) REFERENCES Nurse (NurseID) ON DELETE CASCADE
+);
+
+CREATE TABLE Bill(
+PatientID INT,
+Admission DATE,
+Discharge DATE,
+HospitalStay INT,
+TreatmentCost INT,
+BillAmount INT,
+PRIMARY KEY (PatientID),
+FOREIGN KEY (PatientID) REFERENCES PATIENT_TABLE(Patient_ID) ON DELETE CASCADE
+);
+
+
+ALTER TABLE Patient
+ADD FOREIGN KEY (DoctorID)
+REFERENCES Doctor(DoctorID)
+ON DELETE CASCADE;
+
+ALTER TABLE Patient
+ADD FOREIGN KEY (RoomNumber)
+REFERENCES Room(RoomNumber)
+ON DELETE CASCADE;
+
+ALTER TABLE Patient
+ADD FOREIGN KEY (Admission)
+REFERENCES Bill(Admission)
+ON DELETE CASCADE;
